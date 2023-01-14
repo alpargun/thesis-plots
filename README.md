@@ -1,8 +1,14 @@
+Generates publication quality plots, supporting LaTeX styles, characters etc.
+Example plots are included.
+
 Make sure pdflatex is installed on your system.
 
-Save plots in PGF format.
+Saves plots in PGF format.
 PGF allows for scalable figures as it is in vector form.
 
+An example plot is included below:
+
+![alt text](plots/route-stats/wrong_lane.png)
 
 To include in LaTeX:
 
@@ -31,4 +37,5 @@ Then, adjust the matplotlib figure accordingly:
 Try `\usepackage{pgfplots}` or `\usepackage{pgf}` to use the *pgf* package.
 
 
-Reference: https://timodenk.com/blog/exporting-matplotlib-plots-to-latex/
+
+
