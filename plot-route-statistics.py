@@ -84,7 +84,7 @@ ax.plot('episode', 'total_steps_ema', data=df_no_kl, label='without KL divergenc
 ax.set_xlabel(r'\textbf{Episode Number}', fontsize=11)
 ax.set_ylabel(r'\textbf{Number of Agent Steps}', fontsize=11)
 ax.grid(linestyle='--', linewidth=1)
-#ax.legend()
+ax.legend()
 
 fig.savefig(OUTPUT_DIR +'steps.png', dpi=400, bbox_inches="tight")
 
