@@ -40,10 +40,10 @@ df_yolo = pd.read_csv(csv_yolo, sep=',')
 
 # Create a dictionary to store dfs with their correct name
 dict_df = {
-    'ae': df_ae,
-    'dpc': df_dpc,
-    'moco': df_moco,
-    'yolo': df_yolo,
+    'AE': df_ae,
+    'DPC': df_dpc,
+    'MoCo': df_moco,
+    'YOLOPv2': df_yolo,
 }
 
 
@@ -113,7 +113,7 @@ leg = ax.legend(fontsize=15)
 leg.get_frame().set_edgecolor('k')
 leg.get_frame().set_linewidth(0.1)
 
-tick_spacing = 200 # 250 for IL test
+tick_spacing = 250 # 250 for IL test
 
 ax.xaxis.set_major_locator(ticker.MultipleLocator(tick_spacing))
 #ax.yaxis.set_major_locator(ticker.MultipleLocator(tick_spacing))
@@ -135,17 +135,17 @@ for key, df in dict_df.items():
 
 # set labels (LaTeX can be used)
 #plt.title(r'\textbf{Number of Incorrect Lane Changes for Carla Experiment}', fontsize=11)
-ax.set_xlabel(r'\textbf{Episodes}', fontsize=15)
-ax.set_ylabel(r'\textbf{Lane Invasions}', fontsize=15)
+ax.set_xlabel(r'\textbf{Episodes}', fontsize=18)
+ax.set_ylabel(r'\textbf{Lane Invasions}', fontsize=18)
 ax.grid(linestyle='--', linewidth=1)
-plt.xticks(fontsize=15)
-plt.yticks(fontsize=15)
+plt.xticks(fontsize=16)
+plt.yticks(fontsize=16)
 
 leg = ax.legend(fontsize=15)
 leg.get_frame().set_edgecolor('k')
 leg.get_frame().set_linewidth(0.1)
 
-tick_spacing = 200 # 1000 for 3 configs # 250 for IL test
+tick_spacing = 250 # 1000 for 3 configs # 250 for IL test
 
 ax.xaxis.set_major_locator(ticker.MultipleLocator(tick_spacing))
 #ax.yaxis.set_major_locator(ticker.MultipleLocator(tick_spacing))
@@ -174,41 +174,12 @@ leg = ax.legend(fontsize=15)#, loc='lower right')
 leg.get_frame().set_edgecolor('k')
 leg.get_frame().set_linewidth(0.1)
 
-tick_spacing = 200
+tick_spacing = 250
 
 ax.xaxis.set_major_locator(ticker.MultipleLocator(tick_spacing))
 #ax.yaxis.set_major_locator(ticker.MultipleLocator(tick_spacing))
 
 fig.savefig(OUTPUT_DIR +'steps.png', dpi=400, bbox_inches="tight")
 
-
-
-# %%
-# Plot delta acceleration ---------------------------------------
-
-fig, ax = plt.subplots(1, 1)
-
-for key, df in dict_df.items():
-    ax.plot('episode', 'delta_acceleration_ema', data=df, label=key)
-
-# set labels (LaTeX can be used)
-#plt.title(r'\textbf{Cumulative Reward for Carla Experiment}', fontsize=11)
-
-ax.set_xlabel(r'\textbf{Episodes}', fontsize=18)
-ax.set_ylabel(r'\textbf{$ \Delta$Acceleration}', fontsize=18)
-ax.grid(linestyle='--', linewidth=1)
-plt.xticks(fontsize=12)
-plt.yticks(fontsize=12)
-
-leg = ax.legend(fontsize=12)
-leg.get_frame().set_edgecolor('k')
-leg.get_frame().set_linewidth(0.0)
-
-tick_spacing = 250
-
-ax.xaxis.set_major_locator(ticker.MultipleLocator(tick_spacing))
-#ax.yaxis.set_major_locator(ticker.MultipleLocator(tick_spacing))
-
-fig.savefig(OUTPUT_DIR + 'delta_acceleration.png', dpi=400, bbox_inches="tight")
 
 # %%
