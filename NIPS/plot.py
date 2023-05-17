@@ -21,28 +21,30 @@ matplotlib.rcParams.update({
 #%%
 # Results csvs
 
-OUTPUT_DIR = 'ECAI/plots/' # add '/' at the end
+OUTPUT_DIR = 'nips-plots/' # add '/' at the end
 
 if not os.path.exists(OUTPUT_DIR):
    os.makedirs(OUTPUT_DIR)
 
 # Set csv paths
-csv_1 = 'ECAI/data/MoCo/1/merged.csv'
-csv_2 = 'ECAI/data/MoCo/2/merged.csv'
-csv_6 = 'ECAI/data/MoCo/6/merged.csv'
+csv_ae = 'AE-merged.csv'
+csv_dpc = 'DPC-merged.csv'
+csv_moco = 'MoCo-merged.csv'
+csv_yolo = 'YOLOPv2-merged.csv'
 
 # Read csv files
-df_1 = pd.read_csv(csv_1, sep=',')
-df_2 = pd.read_csv(csv_1, sep=',')
-df_3 = pd.read_csv(csv_1, sep=',')
+df_ae = pd.read_csv(csv_ae, sep=',')
+df_dpc = pd.read_csv(csv_dpc, sep=',')
+df_moco = pd.read_csv(csv_moco, sep=',')
+df_yolo = pd.read_csv(csv_yolo, sep=',')
 
 # Create a dictionary to store dfs with their correct name
 dict_df = {
-    '1': df_1,
-    '2': df_2,
-    '3': df_3
+    'ae': df_ae,
+    'dpc': df_dpc,
+    'moco': df_moco,
+    'yolo': df_yolo,
 }
-
 
 
 #%%
@@ -63,7 +65,7 @@ for key, df in dict_df.items():
     df['total_steps_ema'] = df['Max. distance traveled [steps]'].ewm(span=window_size).mean()
 
     # Cumulative reward - EMA
-    df['mean_reward_ema'] = df['Cumulative reward'].ewm(span=window_size).mean() / 3
+    df['mean_reward_ema'] = df['Cumulativ reward'].ewm(span=window_size).mean() / 3
 
     # Delta acceleration - EMA
     df['delta_acceleration_ema'] = df['Avg. speed compliance'].ewm(span=window_size).mean()
@@ -117,7 +119,7 @@ ax.xaxis.set_major_locator(ticker.MultipleLocator(tick_spacing))
 #ax.yaxis.set_major_locator(ticker.MultipleLocator(tick_spacing))
 
 fig.show()
-fig.savefig(OUTPUT_DIR + 'mean_reward_new.png', dpi=400, bbox_inches="tight")
+fig.savefig(OUTPUT_DIR + 'mean_reward.png', dpi=400, bbox_inches="tight")
 
 
 
