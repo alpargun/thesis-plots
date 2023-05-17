@@ -30,12 +30,14 @@ if not os.path.exists(OUTPUT_DIR):
 csv_ae = 'AE-merged.csv'
 csv_dpc = 'DPC-merged.csv'
 csv_moco = 'MoCo-merged.csv'
+csv_byol = 'BYOL-merged.csv'
 csv_yolo = 'YOLOPv2-merged.csv'
 
 # Read csv files
 df_ae = pd.read_csv(csv_ae, sep=',')
 df_dpc = pd.read_csv(csv_dpc, sep=',')
 df_moco = pd.read_csv(csv_moco, sep=',')
+df_byol = pd.read_csv(csv_byol, sep=',')
 df_yolo = pd.read_csv(csv_yolo, sep=',')
 
 # Create a dictionary to store dfs with their correct name
@@ -43,7 +45,8 @@ dict_df = {
     'AE': df_ae,
     'DPC': df_dpc,
     'MoCo': df_moco,
-    'YOLOPv2': df_yolo,
+    'BYOL': df_byol,
+    'YOLOPv2': df_yolo
 }
 
 
@@ -73,7 +76,7 @@ for key, df in dict_df.items():
 
 #%% Crop dfs to same length 
 
-final_size = 2000 # 5200 for 3 configs # 2000 for IL test # 5000 # 2000 fo 1 action
+final_size = 1800 # 5200 for 3 configs # 2000 for IL test # 5000 # 2000 fo 1 action
 
 for key, df in dict_df.items(): 
 
@@ -96,20 +99,22 @@ for key, df in dict_df.items():
 # set labels (LaTeX can be used)
 #plt.title(r'\textbf{Cumulative Reward for Carla Experiment}', fontsize=11)
 
-ax.set_xlabel(r'\textbf{Episodes}', fontsize=18)
-ax.set_ylabel(r'\textbf{Mean Reward}', fontsize=18)
+ax.set_xlabel(r'\textbf{Episodes}', fontsize=21)
+ax.set_ylabel(r'\textbf{Mean Reward}', fontsize=21)
 ax.grid(linestyle='--', linewidth=1)
 #leg = ax.legend(fontsize=18) #, framealpha=0) #, frameon=False)
 #leg.get_frame().set_linewidth(0.5)
 
-plt.xticks(fontsize=16)
-plt.yticks(fontsize=16)
+plt.xticks(fontsize=20)
+plt.yticks(fontsize=20)
+plt.xlim([0, 1800])
+plt.ylim([-17.5, 0])
 
 #leg = plt.legend()
 #leg.get_frame().set_linewidth(0.0)
 #ax.legend(fontsize=30) #, frameon=False)
 
-leg = ax.legend(fontsize=15)
+leg = ax.legend(fontsize=16)
 leg.get_frame().set_edgecolor('k')
 leg.get_frame().set_linewidth(0.1)
 
@@ -135,13 +140,17 @@ for key, df in dict_df.items():
 
 # set labels (LaTeX can be used)
 #plt.title(r'\textbf{Number of Incorrect Lane Changes for Carla Experiment}', fontsize=11)
-ax.set_xlabel(r'\textbf{Episodes}', fontsize=18)
-ax.set_ylabel(r'\textbf{Lane Invasions}', fontsize=18)
+ax.set_xlabel(r'\textbf{Episodes}', fontsize=21)
+ax.set_ylabel(r'\textbf{Lane Invasions}', fontsize=21)
 ax.grid(linestyle='--', linewidth=1)
-plt.xticks(fontsize=16)
-plt.yticks(fontsize=16)
+plt.xticks(fontsize=20)
+plt.yticks(fontsize=20)
+plt.xlim([0, 1800])
+plt.ylim([0, 13])
 
-leg = ax.legend(fontsize=15)
+
+
+leg = ax.legend(fontsize=16)
 leg.get_frame().set_edgecolor('k')
 leg.get_frame().set_linewidth(0.1)
 
@@ -164,13 +173,16 @@ for key, df in dict_df.items():
 
 # set labels (LaTeX can be used)
 #plt.title(r'\textbf{Collision Test for Carla Experiment}', fontsize=11)
-ax.set_xlabel(r'\textbf{Episodes}', fontsize=18)
-ax.set_ylabel(r'\textbf{Steps}', fontsize=18)
+ax.set_xlabel(r'\textbf{Episodes}', fontsize=21)
+ax.set_ylabel(r'\textbf{Steps}', fontsize=21)
 ax.grid(linestyle='--', linewidth=1)
-plt.xticks(fontsize=16)
-plt.yticks(fontsize=16)
+plt.xticks(fontsize=20)
+plt.yticks(fontsize=20)
+plt.xlim([0, 1800])
+plt.ylim([200, 400])
 
-leg = ax.legend(fontsize=15)#, loc='lower right')
+
+leg = ax.legend(fontsize=16)#, loc='lower right')
 leg.get_frame().set_edgecolor('k')
 leg.get_frame().set_linewidth(0.1)
 

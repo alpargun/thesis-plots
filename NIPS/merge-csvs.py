@@ -6,7 +6,7 @@ import glob
 
 ROOT = "/Users/alp/Desktop/Paper_4/data/"
 
-PART = "YOLOPv2"
+PART = "BYOL"
 
 PATH = ROOT + PART + '/'
 
